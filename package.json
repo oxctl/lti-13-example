@@ -1,0 +1,42 @@
+{
+  "name": "lti-13-example",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "start": "vite",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@instructure/canvas-theme": "^8.43.1",
+    "@instructure/emotion": "^8.43.1",
+    "@instructure/ui-heading": "^8.43.1",
+    "@instructure/ui-text": "^8.43.1",
+    "@instructure/ui-themes": "^8.43.1",
+    "@instructure/ui-view": "^8.43.1",
+    "@oxctl/ui-lti": "^1.3.5",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
+    "@instructure/ui-eslint-config": "^8.43.1",
+    "@instructure/ui-stylelint-config": "^8.43.1",
+    "@instructure/ui-webpack-config": "^8.43.1",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.2.12",
+    "@types/react-dom": "^18.2.5",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.43.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.1",
+    "vite": "^4.3.9",
+    "vite-plugin-mkcert": "^1.16.0"
+  }
+}
