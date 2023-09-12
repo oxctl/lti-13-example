@@ -5,6 +5,9 @@ import mkcert from 'vite-plugin-mkcert'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    // This is needed for deploying to GitHub pages where we might
+    // not be deployed at the root
+    base: './',
     server: {
         https: true,
         port: 3000
