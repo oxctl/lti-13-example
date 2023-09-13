@@ -78,19 +78,23 @@ Authorization: Basic {{base64}}
 Content-Type: application/json
 
 {
-  "registrationId": "{{registration-id}}",
-  "clientName": "LTI 1.3 Example",
-  "clientId": "{{client-id}}",
-  "authorizationGrantType": "implicit",
-  "redirectUri": "{baseUrl}/lti/login",
-  "scopes": [
-    "openid"
-  ],
-  "providerDetails": {
-    "authorizationUri": "https://sso.canvaslms.com/api/lti/authorize_redirect",
-    "tokenUri": "https://sso.canvaslms.com/login/oauth2/token",
-    "jwkSetUri": "https://sso.canvaslms.com/api/lti/security/jwks"
-  }
+  "lti": {
+    "registrationId": "{{registration-id}}",
+    "clientName": "LTI 1.3 Example",
+    "clientId": "{{client-id}}",
+    "authorizationGrantType": "implicit",
+    "redirectUri": "{baseUrl}/lti/login",
+    "scopes": [
+      "openid"
+    ],
+    "providerDetails": {
+      "authorizationUri": "https://sso.canvaslms.com/api/lti/authorize_redirect",
+      "tokenUri": "https://sso.canvaslms.com/login/oauth2/token",
+      "jwkSetUri": "https://sso.canvaslms.com/api/lti/security/jwks"
+    }
+  },
+  "origins": ["https://localhost:3000"],
+  "sign": false
 }
 ```
 
