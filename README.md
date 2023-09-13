@@ -4,6 +4,11 @@ This is a tiny LTI 1.3 tool that shows how a set of HTML/JS/CSS can be deployed 
 
 This tool uses an external service to handle the underlying LTI launch and then retrieves the token created in the launch one it's running.
 
+This repository is automatically by:\
+[![Build and deploy to GitHub Pages](https://github.com/oxctl/lti-13-example/actions/workflows/pages.yml/badge.svg)](https://github.com/oxctl/lti-13-example/actions/workflows/pages.yml)\
+It can be accessed at:\
+https://oxctl.github.io/lti-13-example/
+
 ## Requirements
 
 To develop and run this you need:
