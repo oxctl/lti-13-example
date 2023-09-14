@@ -2,7 +2,7 @@
 
 This is a tiny LTI 1.3 tool that shows how a set of HTML/JS/CSS can be deployed as a LTI tool.
 
-This tool uses an external service to handle the underlying LTI launch and then retrieves the token created in the launch one it's running.
+This tool uses an external service (Tool Support) to handle the underlying LTI launch and then retrieves the token created in the launch one it's running.
 
 This repository is automatically by:\
 [![Build and deploy to GitHub Pages](https://github.com/oxctl/lti-13-example/actions/workflows/pages.yml/badge.svg)](https://github.com/oxctl/lti-13-example/actions/workflows/pages.yml)\
