@@ -16,4 +16,8 @@ export default defineConfig({
         react(),
         mkcert()
     ],
+    // This is to get rid of errors with Instructure UI which depend on process.env
+    define: {
+        'process.env': {}
+    }
 })

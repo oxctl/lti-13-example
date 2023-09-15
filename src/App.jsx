@@ -21,7 +21,7 @@ function App() {
 
     return (
         <LtiHeightLimit>
-            <LtiTokenRetriever ltiServer={import.meta.env.VITE_TOOL_SERVER} handleJwt={updateToken}>
+            <LtiTokenRetriever handleJwt={updateToken}>
                 <LtiApplyTheme url={comInstructureBrandConfigJsonUrl} highContrast={canvasUserPrefersHighContrast}>
                     <View as='div' padding='small'>
                         <Heading level='h2'>Hello LTI World</Heading>
@@ -34,7 +34,7 @@ function App() {
                             This is the data that was passed across in the LTI launch:
                             
                         </Text>
-                        <Text as='p'>
+                        <Text as='div'>
                             <pre style={{whiteSpace: 'pre-wrap'}}>
                                 {JSON.stringify(jwt, null, 3)}
                             </pre>
