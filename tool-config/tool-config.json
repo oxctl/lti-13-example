@@ -1,0 +1,73 @@
+{
+  "config": {
+    "lti_tool_title": "LTI 1.3 Example",
+    "lti_registration_id": "lti-1.3-example",
+    "lti_account_id": "1",
+    "lti_tool_url": "https://localhost:3000"
+  },
+  "ltiKey": {
+    "tool_configuration": {
+      "settings": {
+        "public_jwk": {},
+        "title": "$LTI_TOOL_TITLE",
+        "description": "A simple example of a LTI 1.3 tool",
+        "target_link_uri": "$LTI_TOOL_URL",
+        "oidc_initiation_url": "$LTI_SERVER_URL/lti/login_initiation/",
+        "public_jwk_url": "$LTI_SERVER_URL/.well-known/jwks.json",
+        "scopes": [],
+        "extensions": [
+          {
+            "platform": "canvas.instructure.com",
+            "settings": {
+              "placements": [
+                {
+                  "placement": "course_navigation",
+                  "message_type": "LtiResourceLinkRequest"
+                }
+              ]
+            },
+            "privacy_level": "public"
+          }
+        ],
+        "custom_fields": {
+          "canvas_user_prefers_high_contrast": "$Canvas.user.prefersHighContrast",
+          "com_instructure_brand_config_json_url": "$com.instructure.brandConfigJSON.url"
+        }
+      }
+    },
+    "developer_key": {
+      "name": "$LTI_TOOL_TITLE",
+      "redirect_uris": "$LTI_SERVER_URL/lti/login",
+      "scopes": []
+    }
+  },
+  "toolReg": {
+    "lti": {
+      "registrationId": "$LTI_REGISTRATION_ID",
+      "clientName": "$LTI_TOOL_TITLE",
+      "clientId": "$LTI_DEV_ID",
+      "clientSecret": "$LTI_DEV_KEY",
+      "clientAuthenticationMethod": "client_secret_basic",
+      "authorizationGrantType": "implicit",
+      "redirectUri": "{baseUrl}/lti/login",
+      "scopes": [
+        "openid"
+      ],
+      "providerDetails": {
+        "authorizationUri": "$CANVAS_PROVIDER_URL/api/lti/authorize_redirect",
+        "tokenUri": "$CANVAS_PROVIDER_URL/login/oauth2/token",
+        "userInfoEndpoint": null,
+        "jwkSetUri": "$CANVAS_PROVIDER_URL/api/lti/security/jwks",
+        "issuerUri": null,
+        "configurationMetadata": {}
+      }
+    },
+    "origins": [
+      "$LTI_TOOL_URL"
+    ],
+    "sign": true,
+    "secret": null,
+    "issuer": "$LTI_SERVER_URL",
+    "nrpsAllowedRoles": []
+  }
+}
