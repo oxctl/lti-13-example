@@ -57,7 +57,7 @@ lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json
 ```
 This should add a copy of the tool and make it available for testing. You can then tidy up with:
 ```bash
-lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json  -ss tool-config/local.json  -d
+lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -d
 ```
 
 
