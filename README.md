@@ -53,7 +53,7 @@ cp tool-config/local-example.json tool-config/local.json
 ```
 Then configure the values in `local.json` to match your setup. Then to deploy the tool run:
 ```bash
-lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json  -ss tool-config/local.json  -c
+lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
 ```
 This should add a copy of the tool and make it available for testing. You can then tidy up with:
 ```bash
