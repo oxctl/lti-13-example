@@ -44,6 +44,24 @@ You will get a production optimised set of files in `/dist` that you can place o
 
 To configure this tool to appear in a VLE/LMS you need to setup the configuration in the VLE/LMS and then configure tool suppport with the new tool. Documentation on configuration for Canvas is included here. Before you start you need to know the URL of the tool support server.
 
+### Automatic Configuration
+
+There is [lti-auto-configuration](https://github.com/oxctl/lti-auto-configuration) that will attempt to automatically configure Canvas and the Tool Support server (it is installed as a development dependency). To use this copy the configuration example:
+
+```bash
+cp tool-config/local-example.json tool-config/local.json
+```
+Then configure the values in `local.json` to match your setup. Then to deploy the tool run:
+```bash
+lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
+```
+This should add a copy of the tool and make it available for testing. You can then tidy up with:
+```bash
+lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -d
+```
+
+
+
 ### Canvas
 
 Create a new LTI Developer Key in your Canvas instance. And set the following values:

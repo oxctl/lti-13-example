@@ -1,0 +1,12 @@
+{
+  "setup": {
+    "canvas_url": "https://name.instructure.com",
+    "tool_support_url": "https://localhost:8443",
+    "proxy_server_url": "https://localhost:8443"
+  },
+  "secrets": {
+    "canvas_token": "12345~abcd....",
+    "tool_support_username": "admin",
+    "tool_support_password": "my-password"
+  }
+}
