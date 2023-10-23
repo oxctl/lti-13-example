@@ -58,7 +58,7 @@
         "tokenUri": "$CANVAS_PROVIDER_URL/login/oauth2/token",
         "userInfoEndpoint": null,
         "jwkSetUri": "$CANVAS_PROVIDER_URL/api/lti/security/jwks",
-        "issuerUri": null,
+        "issuerUri": "$CANVAS_ISSUER_URI",
         "configurationMetadata": {}
       }
     },
