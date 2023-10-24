@@ -1,6 +1,6 @@
 {
   "config": {
-    "lti_tool_title": "LTI 1.3 Example",
+    "title_suffix": " (dev)",
     "lti_registration_id": "lti-1.3-example",
     "lti_account_id": "1",
     "lti_tool_url": "https://localhost:3000"
@@ -9,7 +9,7 @@
     "tool_configuration": {
       "settings": {
         "public_jwk": {},
-        "title": "$LTI_TOOL_TITLE",
+        "title": "LTI 1.3 Example$TITLE_SUFFIX",
         "description": "A simple example of a LTI 1.3 tool",
         "target_link_uri": "$LTI_TOOL_URL",
         "oidc_initiation_url": "$LTI_SERVER_URL/lti/login_initiation/",
@@ -36,7 +36,7 @@
       }
     },
     "developer_key": {
-      "name": "$LTI_TOOL_TITLE",
+      "name": "LTI 1.3 Example$TITLE_SUFFIX",
       "redirect_uris": "$LTI_SERVER_URL/lti/login",
       "scopes": []
     }
@@ -44,7 +44,7 @@
   "toolReg": {
     "lti": {
       "registrationId": "$LTI_REGISTRATION_ID",
-      "clientName": "$LTI_TOOL_TITLE",
+      "clientName": "LTI 1.3 Example$TITLE_SUFFIX",
       "clientId": "$LTI_DEV_ID",
       "clientSecret": "$LTI_DEV_KEY",
       "clientAuthenticationMethod": "client_secret_basic",
@@ -58,7 +58,7 @@
         "tokenUri": "$CANVAS_PROVIDER_URL/login/oauth2/token",
         "userInfoEndpoint": null,
         "jwkSetUri": "$CANVAS_PROVIDER_URL/api/lti/security/jwks",
-        "issuerUri": null,
+        "issuerUri": "$CANVAS_ISSUER_URI",
         "configurationMetadata": {}
       }
     },
