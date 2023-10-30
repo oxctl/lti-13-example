@@ -51,7 +51,11 @@ There is [lti-auto-configuration](https://github.com/oxctl/lti-auto-configuratio
 ```bash
 cp tool-config/local-example.json tool-config/local.json
 ```
-Then configure the values in `local.json` to match your setup. Then to deploy the tool run:
+Then configure the values in `local.json` to match your setup, if you're using certificates from `mkcert` first run:
+```bash
+export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+```
+Then to deploy the tool run:
 ```bash
 lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
 ```
