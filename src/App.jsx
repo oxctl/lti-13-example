@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import jwtDecode from 'jwt-decode'
-import {LtiHeightLimit, LtiTokenRetriever} from '@oxctl/ui-lti'
+import {LtiHeightLimit, LtiTokenRetriever, LtiApplyTheme} from '@oxctl/ui-lti'
 import {Heading} from "@instructure/ui-heading";
 import {Text} from "@instructure/ui-text"
-import LtiApplyTheme from "./LtiApplyTheme.jsx";
 import {View} from "@instructure/ui-view";
 
 function App() {
