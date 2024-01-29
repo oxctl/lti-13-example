@@ -14,8 +14,9 @@ https://oxctl.github.io/lti-13-example/
 To develop and run this you need:
 
 - [node.js 18 / npm 9](https://nodejs.org)
+- [mkcert](https://github.com/FiloSottile/mkcert)
 
-You might want to use [nvm](https://github.com/nvm-sh/nvm) to download and manage node.js/npm versions. If you do use it then to select the correct version run `nvm use` in the root of the project.
+You might want to use [nvm](https://github.com/nvm-sh/nvm) to download and manage node.js/npm versions. If you do use it then to select the correct version run `nvm use` in the root of the project (it will use the version specified in `.nvmrc`).
 
 ## Developing
 
@@ -25,11 +26,23 @@ To get started developing with this project ensure you are using the correct ver
 npm i
 ```
 
+If you haven't setup `mkcert` before install its certificate into your trust store with:
+
+```bash
+mkcert -install
+```
+
+Generate a certificate for localhost:
+```bash
+mkcert localhost
+```
+
 Then you can start up the development webserver with:
 
 ```bash
-npm run start
+npm start
 ```
+
 You should then have the tool running on: https://localhost:3000 and any changes you make locally should be picked up automatically by your browser.
 
 ## Production
@@ -42,7 +55,7 @@ You will get a production optimised set of files in `/dist` that you can place o
 
 ## Configuring
 
-To configure this tool to appear in a VLE/LMS you need to setup the configuration in the VLE/LMS and then configure tool suppport with the new tool. Documentation on configuration for Canvas is included here. Before you start you need to know the URL of the tool support server.
+To configure this tool to appear in a VLE/LMS you need to setup the configuration in the VLE/LMS and then configure tool support with the new tool. Documentation on configuration for Canvas is included here. Before you start you need to know the URL of the tool support server.
 
 ### Automatic Configuration
 
@@ -51,20 +64,23 @@ There is [lti-auto-configuration](https://github.com/oxctl/lti-auto-configuratio
 ```bash
 cp tool-config/local-example.json tool-config/local.json
 ```
-Then configure the values in `local.json` to match your setup, if you're using certificates from `mkcert` first run:
+Then configure the values in `local.json` to match your setup, if you're using certificates from `mkcert` for the Tool Support server first run:
 ```bash
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
 ```
 Then to deploy the tool run:
 ```bash
-lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
+npx lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
 ```
-This should add a copy of the tool and make it available for testing. You can then tidy up with:
+This should add a copy of the tool and make it available for testing.
+- You should see the developer key configured in (latest keys are at the top): `https://<canvas.hostname>/accounts/1/developer_keys`
+- The tool should be added and shown in the list on:  `https://<canvas.hostname>/accounts/1/settings/configurations`
+- You can launch the tool by visiting any course and clicking on `LTI 1.3 Example` on the left hand side navigation.
+
+You can then remove the tool from Canvas and delete the configuration from Tool Support with:
 ```bash
-lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -d
+npx lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -d
 ```
-
-
 
 ### Canvas
 
