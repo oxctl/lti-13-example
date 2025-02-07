@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import jwtDecode from 'jwt-decode'
-import {LtiHeightLimit, LtiTokenRetriever, LtiApplyTheme} from '@oxctl/ui-lti'
-import {Heading} from "@instructure/ui-heading";
-import {Text} from "@instructure/ui-text"
-import {View} from "@instructure/ui-view";
+import {LtiApplyTheme, LtiHeightLimit, LtiTokenRetriever} from '@oxctl/ui-lti'
+import {Heading, List, ListItem, Text, View} from "@instructure/ui";
 
 function App() {
     const [jwt, setJwt] = useState(null)
@@ -24,10 +22,18 @@ function App() {
                 <LtiApplyTheme url={comInstructureBrandConfigJsonUrl} highContrast={canvasUserPrefersHighContrast}>
                     <View as='div' padding='small'>
                         <Heading level='h2'>Hello LTI World</Heading>
-                        <Text as='p'>
+                        <View as='p'>
                             Well done on launching the sample LTI 1.3 tool.
-                        </Text>
-
+                        </View>
+                        <Heading level='h3'>Theme</Heading>
+                        <View as='p'>
+                            Example of text colour use:
+                            <List>
+                                <ListItem><Text color="primary">primary</Text></ListItem>
+                                <ListItem><Text color="secondary">secondary</Text></ListItem>
+                                <ListItem><Text color="brand">brand</Text></ListItem>
+                            </List>
+                        </View>
                         <Heading level='h3'>Data</Heading>
                         <Text as='p'>
                             This is the data that was passed across in the LTI launch:
