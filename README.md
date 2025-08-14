@@ -11,12 +11,13 @@ https://oxctl.github.io/lti-13-example/
 
 ## Requirements
 
-To develop and run this you need:
+Best to use nvm to manage node.js/npm versions. This project has been tested with node.js v22.18.0 and npm v10.9.3.
 
-- [node.js 18 / npm 9](https://nodejs.org)
-- [mkcert](https://github.com/FiloSottile/mkcert)
+To select the correct version of node.js run in the root of the project:
+```bash
+nvm use
+````
 
-You might want to use [nvm](https://github.com/nvm-sh/nvm) to download and manage node.js/npm versions. If you do use it then to select the correct version run `nvm use` in the root of the project (it will use the version specified in `.nvmrc`).
 
 ## Developing
 
@@ -24,17 +25,6 @@ To get started developing with this project ensure you are using the correct ver
 
 ```bash
 npm i
-```
-
-If you haven't setup `mkcert` before install its certificate into your trust store with:
-
-```bash
-mkcert -install
-```
-
-Generate a certificate for localhost:
-```bash
-mkcert localhost
 ```
 
 Then you can start up the development webserver with:
@@ -59,82 +49,31 @@ To configure this tool to appear in a VLE/LMS you need to setup the configuratio
 
 ### Automatic Configuration
 
-There is [lti-auto-configuration](https://github.com/oxctl/lti-auto-configuration) that will attempt to automatically configure Canvas and the Tool Support server (it is installed as a development dependency). To use this copy the configuration example:
+This tool uses [lti-auto-configuration](https://github.com/oxctl/lti-auto-configuration) to manage its configuration in Tool Support and Canvas.
+
+If you haven't configured `lti-auto-configuration` before then first you need to point it at your installations:
 
 ```bash
-cp tool-config/local-example.json tool-config/local.json
+npx @oxctl/lti-auto-configuration init
 ```
-Then configure the values in `local.json` to match your setup, if you're using certificates from `mkcert` for the Tool Support server first run:
+
+To deploy this tool some additional values also need to be set, these can be added with:
+
 ```bash
-export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+npx @oxctl/lti-auto-configuration setup
 ```
-Then to deploy the tool run:
+
+- title_suffix - This is some text to append to the name of the tool, if it's a developer deployment it's helpful to add your name here to distinguish between multiple copies of the same tool. eg ` (matthew dev)`.
+- lti_tool_url - The URL that the frontend will be served from. e.g. `https://localhost:3000` when in development.
+- lti_registration_id - The ID that the tool is registered with in tool support. Needs to be unique. e.g. `matthew-dev`
+
+The tool configuration can then be created in Canvas and Tool Support with:
+
 ```bash
-npx lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -c
-```
-This should add a copy of the tool and make it available for testing.
-- You should see the developer key configured in (latest keys are at the top): `https://<canvas.hostname>/accounts/1/developer_keys`
-- The tool should be added and shown in the list on:  `https://<canvas.hostname>/accounts/1/settings/configurations`
-- You can launch the tool by visiting any course and clicking on `LTI 1.3 Example` on the left hand side navigation.
-
-You can then remove the tool from Canvas and delete the configuration from Tool Support with:
-```bash
-npx lti-auto-configuration -t tool-config/tool-config.json -s tool-config/local.json -ss tool-config/local.json  -d
+npx @oxctl/lti-auto-configuration create
 ```
 
-### Canvas
-
-Create a new LTI Developer Key in your Canvas instance. And set the following values:
-
-- Key Name: LTI 1.3 Example (human-readable name shown to administrators)
-- Redirect URIs: https://<tool-support-server>/lti/login
-- Method: Manual Entry
-- Title: LTI 1.3 Example (human-readable name show to tool users)
-- Description: Sample tools
-- Target Link URI: https://localhost:3000/
-- OpenID Connect Initiation Url: https://<tool-support-server>/lti/login_initation
-- JWK Method: Public JWK URL
-- Public JWK URL: https://<tools-support-server>/.well-know/jwks.json
-- Additional Settings
-  - Custom Data:
-    ```
-    canvas_user_prefers_high_contrast=$Canvas.user.prefersHighContrast
-    com_instructure_brand_config_json_url=$com.instructure.brandConfigJSON.url
-    ```
-  - Privacy: Public
-- Placements: Course Navigation
-
-After saving the Developer Key make a note of the Client ID
-
-### Tool Support
-
-To get this tools to launch from a VLE you need to configure the tool server to pass the LTI launch through to your tool. The `registration-id` needs to be unique but otherwise it can be anything, the `client-id` needs to be the Client ID from the Developer Key and the provider details are specific to the type of Canvas instance (production / beta / test).
-
-```http request
-POST /admin/tools
-Authorization: Basic {{base64}}
-Content-Type: application/json
-
-{
-  "lti": {
-    "registrationId": "{{registration-id}}",
-    "clientName": "LTI 1.3 Example",
-    "clientId": "{{client-id}}",
-    "authorizationGrantType": "implicit",
-    "redirectUri": "{baseUrl}/lti/login",
-    "scopes": [
-      "openid"
-    ],
-    "providerDetails": {
-      "authorizationUri": "https://sso.canvaslms.com/api/lti/authorize_redirect",
-      "tokenUri": "https://sso.canvaslms.com/login/oauth2/token",
-      "jwkSetUri": "https://sso.canvaslms.com/api/lti/security/jwks"
-    }
-  },
-  "origins": ["https://localhost:3000"],
-  "sign": false
-}
-```
+`lti-auto-configuration` also allows updating and deleting of the configuration, see the README for details.
 
 ## Change Log
 On Friday 13 June 2025, this repository was relicensed from Apache 2 to MIT with the consent of all contributors.

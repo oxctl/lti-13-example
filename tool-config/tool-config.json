@@ -1,9 +1,5 @@
 {
   "config": {
-    "title_suffix": " (dev)",
-    "lti_registration_id": "lti-1.3-example",
-    "lti_account_id": "1",
-    "lti_tool_url": "https://localhost:3000"
   },
   "ltiKey": {
     "tool_configuration": {
@@ -65,7 +61,6 @@
     "origins": [
       "$LTI_TOOL_URL"
     ],
-    "sign": true,
     "secret": null,
     "issuer": "$LTI_SERVER_URL",
     "nrpsAllowedRoles": []
