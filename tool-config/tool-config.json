@@ -26,8 +26,6 @@
           }
         ],
         "custom_fields": {
-          "canvas_user_prefers_high_contrast": "$Canvas.user.prefersHighContrast",
-          "com_instructure_brand_config_json_url": "$com.instructure.brandConfigJSON.url"
         }
       }
     },

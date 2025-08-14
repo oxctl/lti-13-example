@@ -1,37 +1,33 @@
-import React, {useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import jwtDecode from 'jwt-decode'
-import {LtiApplyTheme, LtiHeightLimit, LtiTokenRetriever} from '@oxctl/ui-lti'
-import {Heading, List, ListItem, Text, View} from "@instructure/ui";
+import {LtiHeightLimit, LtiPageSettings, LtiTokenRetriever} from '@oxctl/ui-lti'
+import {Heading, List, Text, View} from "@instructure/ui";
 
 function App() {
     const [jwt, setJwt] = useState(null)
-    const [comInstructureBrandConfigJsonUrl, setComInstructureBrandConfigJsonUrl] = useState(null)
-    const [canvasUserPrefersHighContrast, setCanvasUserPrefersHighContrast] = useState(null)
 
-
-    const updateToken = (receivedToken) => {
+    // useCallback is used to memoize the function so that it does not change on every render
+    const updateToken = useCallback((receivedToken) => {
         const jwt = jwtDecode(receivedToken)
         setJwt(jwt);
-        setComInstructureBrandConfigJsonUrl(jwt['https://purl.imsglobal.org/spec/lti/claim/custom'].com_instructure_brand_config_json_url)
-        setCanvasUserPrefersHighContrast(jwt['https://purl.imsglobal.org/spec/lti/claim/custom'].canvas_user_prefers_high_contrast === 'true')
-    }
+    },[])
 
     return (
         <LtiHeightLimit>
             <LtiTokenRetriever handleJwt={updateToken}>
-                <LtiApplyTheme url={comInstructureBrandConfigJsonUrl} highContrast={canvasUserPrefersHighContrast}>
+                <LtiPageSettings>
                     <View as='div' padding='small'>
                         <Heading level='h2'>Hello LTI World</Heading>
                         <View as='p'>
                             Well done on launching the sample LTI 1.3 tool.
                         </View>
                         <Heading level='h3'>Theme</Heading>
-                        <View as='p'>
+                        <View as='div'>
                             Example of text colour use:
                             <List>
-                                <ListItem><Text color="primary">primary</Text></ListItem>
-                                <ListItem><Text color="secondary">secondary</Text></ListItem>
-                                <ListItem><Text color="brand">brand</Text></ListItem>
+                                <List.Item><Text color="primary">primary</Text></List.Item>
+                                <List.Item><Text color="secondary">secondary</Text></List.Item>
+                                <List.Item><Text color="brand">brand</Text></List.Item>
                             </List>
                         </View>
                         <Heading level='h3'>Data</Heading>
@@ -47,7 +43,7 @@ function App() {
 
 
                     </View>
-                </LtiApplyTheme>
+                </LtiPageSettings>
             </LtiTokenRetriever>
         </LtiHeightLimit>
     )
