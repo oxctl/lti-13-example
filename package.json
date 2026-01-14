@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.22.10",
     "@instructure/canvas-theme": "^10.11.0",
     "@instructure/emotion": "^10.11.0",
-    "@instructure/ui": "^10.11.0",
+    "@instructure/ui": "^10.26.4",
     "@oxctl/ui-lti": "^10.2.0",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
