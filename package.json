@@ -31,9 +31,9 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.4.2",
+    "@vitejs/plugin-react": "^6.0.2",
+    "vite": "^8.0.16",
     "vite-plugin-mkcert": "^1.17.5",
-    "vitest": "^3.0.7"
+    "vitest": "^4.1.8"
   }
 }
