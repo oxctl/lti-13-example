@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.5",
-    "@oxctl/lti-auto-configuration": "^2.2.4",
+    "@oxctl/lti-auto-configuration": "^2.7.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
